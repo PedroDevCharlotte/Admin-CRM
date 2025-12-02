@@ -40,7 +40,7 @@ const initialProduct: ProductWithOrigin = {
   Code: '',
   Description: '',
   Specifications: '',
-  Inks: '',
+  PrintDetails: '',
   DeliveryTime: '',
   Quantity: 1,
   VendorCost: 0,
@@ -279,7 +279,7 @@ export const ProductAddDialog = ({ open, onClose, onAdd }: ProductAddDialogProps
                       Code: value.Code || '',
                       Description: value.Description || '',
                       Specifications: value.Specifications || '',
-                      Inks: value.Inks || '',
+                      PrintDetails: value.PrintDetails || '',
                       DeliveryTime: value.DeliveryTime || '',
                       Quantity: 1,
                       VendorCost: Number(value.VendorCost) || 0,
@@ -353,7 +353,7 @@ export const ProductAddDialog = ({ open, onClose, onAdd }: ProductAddDialogProps
               <TextField fullWidth label="Descripción *" value={manualProduct.Description} onChange={(e) => setManualProduct(p => ({ ...p, Description: e.target.value }))} sx={{ mb: 2 }} />
               <TextField fullWidth label="Especificaciones" multiline rows={3} value={manualProduct.Specifications} onChange={(e) => setManualProduct(p => ({ ...p, Specifications: e.target.value }))} sx={{ mb: 2 }} />
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2 }}>
-                <TextField label="Tintas" fullWidth value={manualProduct.Inks} onChange={(e) => setManualProduct(p => ({ ...p, Inks: e.target.value }))} />
+                <TextField label="Tintas" fullWidth value={manualProduct.PrintDetails} onChange={(e) => setManualProduct(p => ({ ...p, PrintDetails: e.target.value }))} />
                 <TextField label="Tiempo Entrega" fullWidth value={manualProduct.DeliveryTime} onChange={(e) => setManualProduct(p => ({ ...p, DeliveryTime: e.target.value }))} />
               </Stack>
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>

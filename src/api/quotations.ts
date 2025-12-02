@@ -162,7 +162,8 @@ export interface QuotationProduct {
   Code: string;
   Description: string;
   Specifications: string;
-  Inks: string;
+  Inks?: string;
+  PrintDetails: string;
   DeliveryTime: string;
   Quantity: number;
   VendorCost: number;
