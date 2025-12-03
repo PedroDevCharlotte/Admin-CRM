@@ -26,7 +26,7 @@ import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 // project imports
-import { quotationsApi, Quotation, refreshQuotationsCache } from 'api/quotations';
+import { quotationsApi, Quotation, refreshQuotationsCache, downloadQuotationExcel } from 'api/quotations';
 import QuotationStatusChip from './QuotationStatusChip';
 import QuotationPdfViewer from './QuotationPdfViewer';
 import { useQuotationOperations } from 'hooks/useQuotations';
@@ -207,6 +207,17 @@ const VersionsHistoryDialog = ({ open, onClose, quotationId }: VersionsHistoryDi
                               ) : (
                                 <TickCircle size={18} />
                               )}
+                            </IconButton>
+                          </Tooltip>
+                        )}
+                        {version.Status === 'Cerrada' && (
+                          <Tooltip title="Descargar Excel">
+                            <IconButton 
+                              color="secondary" 
+                              size="small"
+                              onClick={() => downloadQuotationExcel(version.Id)}
+                            >
+                              <DocumentDownload size={18} />
                             </IconButton>
                           </Tooltip>
                         )}

@@ -93,6 +93,7 @@ const EditQuotation = () => {
   const [creatingVersion, setCreatingVersion] = useState(false);
   const [copyingQuotation, setCopyingQuotation] = useState(false);
   const [authorizingQuotation, setAuthorizingQuotation] = useState(false);
+  const [showPdfViewer, setShowPdfViewer] = useState(false);
   // Estados PDF removidos: se utiliza componente reutilizable
 
   // Cargar asesores
@@ -1117,12 +1118,12 @@ const EditQuotation = () => {
                   onCancel={() => navigate('/quotations')}
                   onSave={() => handleSubmit(values)}
                   onSaveAndSend={() => handleSaveAndSendEmail(values)}
-                  onCopy={handleCopyQuotation}
+                  quotationId={quotation?.Id || 0}
+                  quotationNumber={quotation?.NumberQuotation || ''}
                   onAuthorize={handleAuthorizeQuotation}
-                  onViewPdf={quotation?.Id ? () => {
-                    // El componente QuotationPdfViewer ya maneja su propio estado
-                    // Solo necesitamos un placeholder aquí
-                  } : undefined}
+                  onCopy={handleCopyQuotation}
+                  onViewPdf={quotation?.Id ? () => setShowPdfViewer(true) : undefined}
+                  
                   isCopying={copyingQuotation}
                   isAuthorizing={authorizingQuotation}
                   isSavingAndSending={savingAndSending}
@@ -1130,9 +1131,9 @@ const EditQuotation = () => {
                   disableSaveAndSendReason={!selectedCustomer?.Email ? 'El cliente no tiene email registrado' : undefined}
                 />
                 {/* PDF Viewer - mantenerlo fuera para que maneje su propio estado */}
-                {quotation?.Id && (
+                {quotation?.Id && showPdfViewer && (
                   <Box sx={{ display: 'none' }}>
-                    <QuotationPdfViewer quotationId={quotation.Id} quotationNumber={quotation.NumberQuotation} />
+                    <QuotationPdfViewer quotationId={quotation.Id} quotationNumber={quotation.NumberQuotation}  auto={true} onClose={()=>setShowPdfViewer(false)}  />
                   </Box>
                 )}
               </Grid>

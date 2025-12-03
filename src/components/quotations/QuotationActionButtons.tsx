@@ -19,6 +19,7 @@ import {
   TickCircle,
   CloseCircle
 } from 'iconsax-react';
+import QuotationPdfViewer from './QuotationPdfViewer';
 
 interface QuotationActionButtonsProps {
   mode: 'create' | 'edit';
@@ -32,7 +33,8 @@ interface QuotationActionButtonsProps {
   onCopy?: () => void;
   onAuthorize?: () => void;
   onViewPdf?: () => void;
-  
+  quotationId?: number;
+  quotationNumber?: string | number;
   // Estados de loading
   isSaving?: boolean;
   isCopying?: boolean;
@@ -50,6 +52,8 @@ const QuotationActionButtons = ({
   onSave,
   onSaveAndSend,
   quotationStatus,
+  quotationId,
+  quotationNumber,
   onCopy,
   onAuthorize,
   onViewPdf,
@@ -196,9 +200,8 @@ const QuotationActionButtons = ({
   return (
     <Stack direction="row" spacing={2} justifyContent="flex-end">
       {mode === 'edit' && onViewPdf && (
-        <Button variant="outlined" onClick={onViewPdf} color="info">
-          Ver PDF
-        </Button>
+       
+        <QuotationPdfViewer quotationId={quotationId || 0} quotationNumber={quotationNumber} />
       )}
       
       <Button variant="outlined" onClick={onCancel}>

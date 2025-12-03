@@ -1058,6 +1058,7 @@ const CreateQuotation = () => {
                   mode="create"
                   onCancel={() => navigate('/quotations')}
                   onSave={() => handleSubmit(values)}
+                  
                   onSaveAndSend={() => handleCreateAndSendEmail(values)}
                   isSavingAndSending={creatingAndSending}
                   disableSaveAndSend={!customers.find((c: any) => c.Id === values.CustomerId)?.Email}
