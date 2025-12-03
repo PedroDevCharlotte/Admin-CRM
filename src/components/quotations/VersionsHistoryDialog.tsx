@@ -91,7 +91,7 @@ const VersionsHistoryDialog = ({ open, onClose, quotationId }: VersionsHistoryDi
   const handleAuthorize = async (versionId: number) => {
     setAuthorizingId(versionId);
     try {
-      const result = await updateQuotationStatus(versionId, 'En proceso');
+      const result = await updateQuotationStatus(versionId, 'Cerrada');
       if (result.success) {
         notifications.success('Cotización autorizada exitosamente');
         await refreshQuotationsCache(versionId);

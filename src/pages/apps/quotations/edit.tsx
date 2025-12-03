@@ -185,7 +185,7 @@ const EditQuotation = () => {
     }
 
     // Si la cotización ya fue enviada (Estado: "En proceso"), crear nueva versión con los cambios actuales
-    if (quotation.Status === 'En proceso') {
+    if (quotation.Status === 'En proceso' || quotation.Status === 'Cerrada') {
       notifications.info('Esta cotización ya fue enviada. Creando nueva versión con los cambios actuales...');
       
       try {
@@ -270,7 +270,7 @@ const EditQuotation = () => {
     
     setAuthorizingQuotation(true);
     try {
-      const result = await updateQuotationStatus(quotationId, 'En proceso');
+      const result = await updateQuotationStatus(quotationId, 'Cerrada');
       
       if (result.success) {
         notifications.success('Cotización autorizada exitosamente');
@@ -306,8 +306,8 @@ const EditQuotation = () => {
       let quotationIdToSend = quotationId;
       let quotationNumberToSend = quotation.NumberQuotation;
 
-      // Si la cotización ya fue enviada (Estado: "En proceso"), crear nueva versión con los cambios
-      if (quotation.Status === 'En proceso') {
+      // Si la cotización ya fue enviada (Estado: "En proceso" o "Cerrada"), crear nueva versión con los cambios
+      if (quotation.Status === 'En proceso' || quotation.Status === 'Cerrada') {
         notifications.info('Cotización ya enviada. Creando nueva versión con tus cambios...');
         
         try {
