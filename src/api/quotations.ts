@@ -162,8 +162,8 @@ export interface QuotationProduct {
   Code: string;
   Description: string;
   Specifications: string;
-  Inks?: string;
-  PrintDetails: string;
+  Inks: string;
+  PrintDetails?: string; // Detalle de impresión (equivalente a Inks pero usado en la tabla)
   DeliveryTime: string;
   Quantity: number;
   VendorCost: number;
